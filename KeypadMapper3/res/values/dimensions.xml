@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="keypad_row_height">0dp</dimen>
-    <string name="keypad_row_weight">1</string>
+    <string name="keypad_row_weight" translatable="false">1</string>
     <dimen name="keypad_button_text_size">22sp</dimen>
     <dimen name="keypad_fadeout_button_text_size">32sp</dimen>
     <dimen name="keypad_button_text_size_land">24sp</dimen>
