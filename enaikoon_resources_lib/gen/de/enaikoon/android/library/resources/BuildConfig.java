@@ -1,6 +1,6 @@
 /*___Generated_by_IDEA___*/
 
-package de.enaikoon.android.keypadmapper3;
+package de.enaikoon.android.library.resources;
 
 /* This stub is only used by the IDE. It is NOT the BuildConfig class actually packed into the APK */
 public final class BuildConfig {
