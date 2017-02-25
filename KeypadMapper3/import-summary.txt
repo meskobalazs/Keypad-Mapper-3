@@ -1,0 +1,100 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Manifest Merging:
+-----------------
+Your project uses libraries that provide manifests, and your Eclipse
+project did not explicitly turn on manifest merging. In Android Gradle
+projects, manifests are always merged (meaning that contents from your
+libraries' manifests will be merged into the app manifest. If you had
+manually copied contents from library manifests into your app manifest
+you may need to remove these for the app to build correctly.
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+From KeypadMapper3:
+* .idea/
+* .idea/KeypadMapper3.iml
+* .idea/compiler.xml
+* .idea/copyright/
+* .idea/copyright/profiles_settings.xml
+* .idea/misc.xml
+* .idea/modules.xml
+* .idea/vcs.xml
+* .idea/workspace.xml
+* ant.properties
+* default.properties
+* proguard/
+* proguard/dump.txt
+* proguard/mapping.txt
+* proguard/seeds.txt
+* proguard/usage.txt
+From enaikoon_resources_lib:
+* enaikoon_resources_lib.iml
+* proguard-project.txt
+
+Replaced Jars with Dependencies:
+--------------------------------
+The importer recognized the following .jar files as third party
+libraries and replaced them with Gradle dependencies instead. This has
+the advantage that more explicit version information is known, and the
+libraries can be updated automatically. However, it is possible that
+the .jar file in your project was of an older version than the
+dependency we picked, which could render the project not compileable.
+You can disable the jar replacement in the import wizard and try again:
+
+android-support-v4.jar => com.android.support:support-v4:18.0.0
+
+Replaced Libraries with Dependencies:
+-------------------------------------
+The importer recognized the following library projects as third party
+libraries and replaced them with Gradle dependencies instead. This has
+the advantage that more explicit version information is known, and the
+libraries can be updated automatically. However, it is possible that
+the source files in your project were of an older version than the
+dependency we picked, which could render the project not compileable.
+You can disable the library replacement in the import wizard and try
+again:
+
+actionbarsherlock =>
+    com.actionbarsherlock:actionbarsherlock:4.4.0@aar
+    com.android.support:support-v4:18.0.0
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+In enaikoon_resources_lib:
+* AndroidManifest.xml => enaikoon_resources_lib/src/main/AndroidManifest.xml
+* lint.xml => enaikoon_resources_lib/lint.xml
+* res/ => enaikoon_resources_lib/src/main/res/
+* src/ => enaikoon_resources_lib/src/main/java/
+In KeypadMapper3:
+* AndroidManifest.xml => keypadMapper3/src/main/AndroidManifest.xml
+* libs/SanselanAndroidExif.jar => keypadMapper3/libs/SanselanAndroidExif.jar
+* libs/android-support-v13.jar => keypadMapper3/libs/android-support-v13.jar
+* libs/apache-mime4j-0.5.jar => keypadMapper3/libs/apache-mime4j-0.5.jar
+* libs/httpmime-4.0-beta2.jar => keypadMapper3/libs/httpmime-4.0-beta2.jar
+* proguard.cfg => keypadMapper3/proguard.cfg
+* res/ => keypadMapper3/src/main/res/
+* src/ => keypadMapper3/src/main/java/
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)

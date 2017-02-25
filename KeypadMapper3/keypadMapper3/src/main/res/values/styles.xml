@@ -1,0 +1,26 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <style name="CustomDialogTheme" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+    <style name="SettingsTheme" parent="@style/Theme.Sherlock.NoActionBar">
+        <item name="android:textAppearanceMedium">@style/Title</item>
+        <item name="android:textAppearanceSmall">@style/Summary</item>
+        <item name="android:textColorSecondary">@color/secondary_text_dark</item>
+        <item name="android:textColor">@color/primary_text_dark</item>
+    </style>
+
+    <style name="Title">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+    <style name="Summary">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/ENAiKOON_light_gray</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="color" name="ENAiKOON_orange">#F9BE27</item>
+    <item type="color" name="ENAiKOON_background">#282727</item>
+    <item type="color" name="ENAiKOON_light_gray">#BEBEBE</item>
+    <item type="color" name="ENAiKOON_darkness">#414042</item>
+    <item type="color" name="disabled_title">#88898A</item>
+    <item type="color" name="disabled_summary">#67696A</item>
+    <item type="color" name="white">#FFFFFF</item>
+
+    <item type="color" name="bright_foreground_dark_disabled">#80ffffff</item>
+    <item type="color" name="bright_foreground_dark">#ffffffff</item>
+    <item type="color" name="bright_foreground_dark_inverse">#ff000000</item>
+    <item type="color" name="dim_foreground_dark_disabled">#80bebebe</item>
+    <item type="color" name="dim_foreground_dark">#bebebe</item>
+    <item type="color" name="dim_foreground_dark_inverse_disabled">#80323232</item>
+    <item type="color" name="dim_foreground_dark_inverse">#323232</item>
+    <item type="color" name="button_back_color">#4E5153</item>
+</resources>
