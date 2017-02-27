@@ -21,8 +21,8 @@ public class LocaleInfo implements Parcelable {
 
     private String localeUrl;
 
-    public static final Parcelable.Creator<LocaleInfo> CREATOR =
-            new Parcelable.Creator<LocaleInfo>() {
+    public static final Creator<LocaleInfo> CREATOR =
+            new Creator<LocaleInfo>() {
                 @Override
                 public LocaleInfo createFromParcel(Parcel in) {
                     String localeName = in.readString();

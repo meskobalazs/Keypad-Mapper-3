@@ -24,7 +24,6 @@ android {
 }
 
 dependencies {
-    compile project(':enaikoon_resources_lib')
     compile 'com.actionbarsherlock:actionbarsherlock:4.4.0@aar'
     compile 'com.android.support:support-v4:18.0.0'
     compile files('libs/SanselanAndroidExif.jar')
