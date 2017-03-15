@@ -50,7 +50,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import de.enaikoon.android.keypadmapper3.KeypadMapperApplication;
 import de.enaikoon.android.keypadmapper3.R;
-import de.enaikoon.android.keypadmapper3.RateMeActivity;
 import de.enaikoon.android.keypadmapper3.SatelliteInfoFragment;
 import de.enaikoon.android.keypadmapper3.SettingsActivity;
 import de.enaikoon.android.keypadmapper3.domain.Mapper;
@@ -214,12 +213,6 @@ public class KeypadMapper2Activity extends FragmentActivity implements AddressIn
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if (gestureDetector.onTouchEvent(ev)) {
-            return true;
-        } else if (keypadView.getVisibility() == View.VISIBLE
-                && keypadFragment.dispatchTouchEvent(ev)) {
-            return true;
-        } else if (extendedAddressView.getVisibility() == View.VISIBLE
-                && extendedAddressFragment.dispatchTouchEvent(ev)) {
             return true;
         }
         return super.dispatchTouchEvent(ev);
@@ -581,7 +574,7 @@ public class KeypadMapper2Activity extends FragmentActivity implements AddressIn
             gpsDialog = null;
         }
         
-        if (KeypadMapperApplication.getInstance().getSettings().isLayoutOptimizationEnabled()) {
+        /*if (KeypadMapperApplication.getInstance().getSettings().isLayoutOptimizationEnabled()) {
             // show empty toast so that there's no problem with showing
             // optimized view. On some phones with Android 2.3 and maybe others,
             // layout isn't rendered in fullscreen and showing toast fixes it.
@@ -590,9 +583,7 @@ public class KeypadMapper2Activity extends FragmentActivity implements AddressIn
             t.setView(etv);
             t.setDuration(1);
             t.show();
-        }
-        
-        RateMeActivity.startRateMe(this);
+        }*/
     }
 
     @Override

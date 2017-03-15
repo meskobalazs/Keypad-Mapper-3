@@ -33,7 +33,6 @@ import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
-import de.enaikoon.android.keypadmapper3.HelpActivity;
 import de.enaikoon.android.keypadmapper3.KeypadMapperApplication;
 import de.enaikoon.android.keypadmapper3.LocationNotAvailableException;
 import de.enaikoon.android.keypadmapper3.R;
@@ -60,8 +59,6 @@ public class KeypadFragment extends Fragment implements OnClickListener, UndoAva
 
     private double distance;
 
-    private View helpBtn;
-
     private AddressInterface addressCallback;
 
     private ReverseGeocodeController geocodeController;
@@ -79,27 +76,6 @@ public class KeypadFragment extends Fragment implements OnClickListener, UndoAva
     private Mapper mapper = KeypadMapperApplication.getInstance().getMapper();
 
     private Address address;
-
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        if (ev.getAction() == MotionEvent.ACTION_UP
-                && !KeypadMapperApplication.getInstance().getSettings()
-                        .isLayoutOptimizationEnabled()) {
-            float xTouch = ev.getX();
-            float yTouch = ev.getY();
-            int[] location = new int[2];
-            helpBtn.getLocationOnScreen(location);
-            DisplayMetrics displayMetrics = getActivity().getResources().getDisplayMetrics();
-            int padding = (int) ((20 /* dp */* displayMetrics.density) + 0.5);
-            if (xTouch >= location[0] - padding
-                    && xTouch <= location[0] + padding + helpBtn.getWidth()
-                    && yTouch >= location[1] - padding
-                    && yTouch <= location[1] + padding + helpBtn.getHeight()) {
-                onClick(helpBtn);
-                return true;
-            }
-        }
-        return false;
-    }
 
     public void enableHousenumberView() {
         inputNotes.setCursorVisible(false);
@@ -135,10 +111,6 @@ public class KeypadFragment extends Fragment implements OnClickListener, UndoAva
         
         try {
             switch (v.getId()) {
-            case R.id.helpBtn:
-                Intent help = new Intent(getActivity(), HelpActivity.class);
-                startActivity(help);
-                break;
             case R.id.button_C:
                 // clear
                 keyboardVibrate();
@@ -299,9 +271,6 @@ public class KeypadFragment extends Fragment implements OnClickListener, UndoAva
         textlastHouseNumbers2 = (TextView) view.findViewById(R.id.text_last_housenumbers_2);
         textlastHouseNumbers3 = (TextView) view.findViewById(R.id.text_last_housenumbers_3);
         textGeoInfo = (TextView) view.findViewById(R.id.text_geoinfo);
-
-        helpBtn = view.findViewById(R.id.helpBtn);
-        helpBtn.setOnClickListener(this);
 
         inputNotes = (HideCursorEditText) view.findViewById(R.id.input_text_name);
         inputNotes.addTextChangedListener(new TextWatcher() {
@@ -573,8 +542,6 @@ public class KeypadFragment extends Fragment implements OnClickListener, UndoAva
         inputNotes.setHint(localizer.getString("keypad_info_hint"));
         inputNotes.setBackgroundDrawable(localizer
                 .get9PatchDrawable("textfield_multiline_activated_holo_dark"));
-
-        view.findViewById(R.id.helpBtn).setBackgroundDrawable(localizer.getDrawable("icon_help"));
 
         View delimiter1 = view.findViewById(R.id.delimiter1);
         if (delimiter1 != null) {

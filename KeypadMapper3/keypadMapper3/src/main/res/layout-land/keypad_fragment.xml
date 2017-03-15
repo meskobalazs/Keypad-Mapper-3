@@ -37,12 +37,6 @@
             android:cursorVisible="false"
             android:focusable="true"
             android:focusableInTouchMode="true" />
-        <ImageView
-            android:id="@+id/helpBtn"
-            android:layout_width="9dp"
-            android:layout_height="15dp"
-            android:layout_gravity="top|right"
-            android:background="@drawable/icon_help" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/housenumber_container"
@@ -356,7 +350,7 @@
                     android:textSize="@dimen/keypad_button_text_size_land" />
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/keysRow3"
+                android:id="@+id/keysRow4"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/keypad_row_height"
                 android:layout_weight="@string/keypad_row_weight"

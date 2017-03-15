@@ -165,10 +165,6 @@ public class SettingsActivity extends Activity implements OnClickListener, OnDis
     private TextView txtBugReportTitle;
     private TextView txtBugReportSummary;
     
-    private LinearLayout llHelp;
-    private TextView txtHelpTitle;
-    private TextView txtHelpSummary;
-    
     private LinearLayout llAbout;
     private TextView txtAboutTitle;
     private TextView txtAboutSummary;
@@ -369,13 +365,6 @@ public class SettingsActivity extends Activity implements OnClickListener, OnDis
         txtBugReportSummary = (TextView) llBugReport.findViewById(R.id.txtSummary);
         txtBugReportSummary.setText(localizer.getString("options_bugreport_summary"));
         
-        llHelp = (LinearLayout) findViewById(R.id.setting_help);
-        llHelp.setOnClickListener(this);
-        txtHelpTitle = (TextView) llHelp.findViewById(R.id.txtTitle);
-        txtHelpTitle.setText(localizer.getString("prefsHelpTitle"));
-        txtHelpSummary = (TextView) llHelp.findViewById(R.id.txtSummary);
-        txtHelpSummary.setText(localizer.getString("prefsHelpSummary"));
-        
         llAbout  = (LinearLayout) findViewById(R.id.setting_about);
         llAbout.setOnClickListener(this);
         txtAboutTitle = (TextView) llAbout.findViewById(R.id.txtTitle);
@@ -444,12 +433,8 @@ public class SettingsActivity extends Activity implements OnClickListener, OnDis
             case DIALOG_BUG_REPORT:
                 showBugReportDialog();
                 break;
-            case DIALOG_ABOUT:
-                showAboutDialog();
+            default:
                 break;
-                
-                default:
-                    break;
             }
         }
         // restore scroll position
@@ -496,10 +481,6 @@ public class SettingsActivity extends Activity implements OnClickListener, OnDis
             handleOptimizeLayout();
         } else if (v == llBugReport) {
             showBugReportDialog();
-        } else if (v == llHelp) {
-            startHelpActivity();
-        } else if (v == llAbout) {
-            showAboutDialog();
         }
     }
     
@@ -936,44 +917,6 @@ public class SettingsActivity extends Activity implements OnClickListener, OnDis
         dialog.show();
     }
     
-    private void showAboutDialog() {
-        // display About window
-        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-        View layout =
-                inflater.inflate(R.layout.about_dialog, (ViewGroup) findViewById(R.id.layout_root));
-        TextView text = (TextView) layout.findViewById(R.id.text);
-        String aboutText = localizer.getString("about_message");
-        text.setText(Html.fromHtml(String.format(aboutText, localizer.getString("app_name"), getVersionName())));
-        text.setMovementMethod(LinkMovementMethod.getInstance());
-        ImageView image = (ImageView) layout.findViewById(R.id.image);
-        image.setImageDrawable(localizer.getDrawable("enaikoon_logo_frosted"));
-
-        dialog = new AlertDialog.Builder(this)
-                                .setIcon(android.R.drawable.ic_dialog_info)
-                                .setTitle(localizer.getString("app_name"))
-                                .setView(layout)
-                                .setOnCancelListener(null)
-                                .setPositiveButton(localizer.getString("close"), new DialogInterface.OnClickListener() {
-                                    
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        dialog.dismiss();
-                                    }
-                                }).create(); 
-
-        activeDialog = DIALOG_ABOUT;
-        dialog.show();
-
-        image.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(localizer.getString("about_logo_url")));
-                startActivity(i);
-            }
-        });
-    }
-    
     private String getVersionName() {
         try {
             // get the app version number
@@ -985,11 +928,6 @@ public class SettingsActivity extends Activity implements OnClickListener, OnDis
         } catch (Exception e) {
             return "";
         }
-    }
-    
-    private void startHelpActivity() {
-        Intent help = new Intent(SettingsActivity.this, HelpActivity.class);
-        startActivity(help);
     }
     
     @Override

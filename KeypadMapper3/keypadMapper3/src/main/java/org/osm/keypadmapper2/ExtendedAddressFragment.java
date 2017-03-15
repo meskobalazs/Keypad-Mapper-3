@@ -18,15 +18,13 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
-import de.enaikoon.android.keypadmapper3.HelpActivity;
 import de.enaikoon.android.keypadmapper3.KeypadMapperApplication;
 import de.enaikoon.android.keypadmapper3.R;
 import de.enaikoon.android.keypadmapper3.domain.Address;
 import de.enaikoon.android.keypadmapper3.domain.Mapper;
 import de.enaikoon.android.library.resources.locale.Localizer;
 
-public class ExtendedAddressFragment extends Fragment implements OnFocusChangeListener,
-        OnClickListener {
+public class ExtendedAddressFragment extends Fragment implements OnFocusChangeListener {
 
     private EditText textInputHousenumber;
 
@@ -85,27 +83,6 @@ public class ExtendedAddressFragment extends Fragment implements OnFocusChangeLi
         }
     };
 
-    private View helpBtn;
-
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        if (ev.getAction() == MotionEvent.ACTION_UP) {
-            float xTouch = ev.getX();
-            float yTouch = ev.getY();
-            int[] location = new int[2];
-            helpBtn.getLocationOnScreen(location);
-            DisplayMetrics displayMetrics = getActivity().getResources().getDisplayMetrics();
-            int padding = (int) ((20 /* dp */* displayMetrics.density) + 0.5);
-            if (xTouch >= location[0] - padding
-                    && xTouch <= location[0] + padding + helpBtn.getWidth()
-                    && yTouch >= location[1] - padding
-                    && yTouch <= location[1] + padding + helpBtn.getHeight()) {
-                onClick(helpBtn);
-                return true;
-            }
-        }
-        return false;
-    }
-
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -114,19 +91,6 @@ public class ExtendedAddressFragment extends Fragment implements OnFocusChangeLi
             addressCallback = (AddressInterface) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString() + "must implement AddressInterface");
-        }
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see android.view.View.OnClickListener#onClick(android.view.View)
-     */
-    @Override
-    public void onClick(View view) {
-        if (view == helpBtn) {
-            Intent help = new Intent(getActivity(), HelpActivity.class);
-            startActivity(help);
         }
     }
 
@@ -156,9 +120,6 @@ public class ExtendedAddressFragment extends Fragment implements OnFocusChangeLi
         textInputCountry = (EditText) view.findViewById(R.id.input_country);
         textInputCountry.setOnFocusChangeListener(this);
 
-        helpBtn = view.findViewById(R.id.helpBtn);
-        helpBtn.setOnClickListener(this);
-        
         updateResources(view);
         
         view.setOnClickListener(new OnClickListener() {
@@ -268,14 +229,10 @@ public class ExtendedAddressFragment extends Fragment implements OnFocusChangeLi
         ((TextView) view.findViewById(R.id.input_desc_country)).setHint(localizer
                 .getString("Countrycode"));
 
-        view.findViewById(R.id.helpBtn).setBackgroundDrawable(localizer.getDrawable("icon_help"));
-        
         if (view.getResources().getBoolean(R.bool.is_tablet)) {
-            helpBtn.setVisibility(View.GONE);
             textInputHousenumber.setVisibility(View.GONE);
             ((TextView) view.findViewById(R.id.input_desc_housenumber)).setVisibility(View.GONE);
         } else {
-            helpBtn.setVisibility(View.VISIBLE);
             textInputHousenumber.setVisibility(View.VISIBLE);
             ((TextView) view.findViewById(R.id.input_desc_housenumber)).setVisibility(View.VISIBLE);
         }

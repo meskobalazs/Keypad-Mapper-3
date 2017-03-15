@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:textSize="12dip"
             android:padding="2dp"
-            android:singleLine="true"
+            android:maxLines="1"
             android:text="@string/test_version"
             />
         <TextView
@@ -29,7 +29,7 @@
             android:layout_gravity="bottom|left"
             android:layout_weight="1"
             android:gravity="bottom|left"
-            android:singleLine="true"
+            android:maxLines="1"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@android:color/white"
             android:textSize="12sp"
@@ -38,12 +38,6 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
              />
-        <ImageView
-            android:id="@+id/helpBtn"
-            android:layout_width="9dp"
-            android:layout_height="15dp"
-            android:layout_gravity="top|right"
-            android:background="@drawable/icon_help" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/housenumber_container"
@@ -64,7 +58,7 @@
             android:focusableInTouchMode="true"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:singleLine="true"
+            android:maxLines="1"
             android:hint=""
             android:cursorVisible="true"
             android:textColor="@android:color/black"
@@ -74,8 +68,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:background="#f9be27" >
-        </View>
+            android:background="#f9be27" />
         <FrameLayout
             android:id="@+id/text_last_housenumbers"
             android:layout_width="0dp"
@@ -89,7 +82,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
-                android:singleLine="true"
+                android:maxLines="1"
                 android:textColor="@android:color/white"
                 android:textSize="17sp"
                 android:textStyle="bold" />
@@ -98,7 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:singleLine="true"
+                android:maxLines="1"
                 android:textColor="@android:color/white"
                 android:textSize="17sp"
                 android:textStyle="bold" />
@@ -107,7 +100,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:singleLine="true"
+                android:maxLines="1"
                 android:textColor="@android:color/white"
                 android:textSize="17sp"
                 android:textStyle="bold"
@@ -128,7 +121,6 @@
         android:imeOptions="actionDone"
         android:lines="1"
         android:maxLines="1"
-        android:singleLine="false"
         android:textColor="@android:color/white"
         android:textColorHint="#afaead"
         android:textSize="@dimen/house_note_text_size" >
@@ -340,7 +332,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:src="@drawable/icon_keypad_clear" 
+                    android:src="@drawable/icon_keypad_clear"
                     android:textColor="@color/white"
                 	android:background="@drawable/button_back"
                 	android:layout_margin="3dp" />

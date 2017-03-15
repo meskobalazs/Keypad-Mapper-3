@@ -59,17 +59,7 @@
             android:label="@string/prefsShare"
             android:theme="@android:style/Theme.Dialog" >
         </activity>
-        <activity
-            android:name="HelpActivity"
-            android:configChanges="locale|keyboardHidden|orientation"
-            android:label="@string/help_title"
-            android:theme="@style/Theme.Sherlock" >
-        </activity>
-        <activity
-            android:name="RateMeActivity"
-            android:configChanges="locale|keyboardHidden|orientation"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
+
         <service android:name="de.enaikoon.android.keypadmapper3.services.ControllableResourceInitializerService" />
         <service android:name="de.enaikoon.android.inviu.opencellidlibrary.CellIDCollectionService" />
         <service android:name="de.enaikoon.android.inviu.opencellidlibrary.UploadService" />

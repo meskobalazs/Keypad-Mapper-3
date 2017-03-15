@@ -13,14 +13,6 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="fill_parent"/>
-    	<ImageView
-	        android:id="@+id/helpBtn"
-	        android:layout_width="9dp"
-	        android:layout_height="15dp"
-	        android:layout_gravity="top|right"
-	        android:layout_marginRight="10dp"
-	        android:layout_marginTop="6dp"
-	        android:background="@drawable/icon_help" />    
     </LinearLayout>
     
     <ScrollView
