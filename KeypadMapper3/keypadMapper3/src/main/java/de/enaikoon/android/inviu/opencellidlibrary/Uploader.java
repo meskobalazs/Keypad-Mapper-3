@@ -23,7 +23,7 @@ import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.util.EntityUtils;
 
 import android.content.Context;
-import de.enaikoon.android.keypadmapper3.KeypadMapperApplication;
+import hu.meskobalazs.android.keypadmapper.KeypadMapperApplication;
 import de.enaikoon.android.keypadmapper3.utils.ConnectivityUtils;
 
 /**

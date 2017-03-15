@@ -32,7 +32,7 @@ import android.telephony.TelephonyManager;
 import android.telephony.cdma.CdmaCellLocation;
 import android.telephony.gsm.GsmCellLocation;
 import android.util.Log;
-import de.enaikoon.android.keypadmapper3.KeypadMapperApplication;
+import hu.meskobalazs.android.keypadmapper.KeypadMapperApplication;
 
 /**
  * This service collects cellids of the Android-device in the background.

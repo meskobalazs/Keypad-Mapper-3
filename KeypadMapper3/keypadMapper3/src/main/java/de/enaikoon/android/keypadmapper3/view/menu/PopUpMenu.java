@@ -17,9 +17,8 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import de.enaikoon.android.keypadmapper3.KeypadMapperApplication;
-import de.enaikoon.android.keypadmapper3.R;
-import de.enaikoon.android.keypadmapper3.domain.Mapper;
+import hu.meskobalazs.android.keypadmapper.KeypadMapperApplication;
+import hu.meskobalazs.android.keypadmapper.R;
 import de.enaikoon.android.keypadmapper3.view.menu.MenuListener.OptionType;
 import de.enaikoon.android.library.resources.locale.Localizer;
 

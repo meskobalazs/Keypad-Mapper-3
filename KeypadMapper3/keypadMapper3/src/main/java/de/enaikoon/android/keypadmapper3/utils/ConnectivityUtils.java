@@ -10,7 +10,7 @@ package de.enaikoon.android.keypadmapper3.utils;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import de.enaikoon.android.keypadmapper3.KeypadMapperApplication;
+import hu.meskobalazs.android.keypadmapper.KeypadMapperApplication;
 import de.enaikoon.android.keypadmapper3.settings.KeypadMapperSettings;
 
 /**

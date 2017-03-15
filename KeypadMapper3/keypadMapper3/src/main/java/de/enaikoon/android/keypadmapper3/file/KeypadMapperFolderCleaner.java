@@ -10,7 +10,7 @@ package de.enaikoon.android.keypadmapper3.file;
 import java.io.File;
 
 import android.util.Log;
-import de.enaikoon.android.keypadmapper3.KeypadMapperApplication;
+import hu.meskobalazs.android.keypadmapper.KeypadMapperApplication;
 
 /**
  * The main purpose of this class is removing empty files in keypadmapper

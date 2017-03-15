@@ -1,10 +1,7 @@
 package org.osm.keypadmapper2;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -33,16 +30,15 @@ import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
-import de.enaikoon.android.keypadmapper3.KeypadMapperApplication;
+import hu.meskobalazs.android.keypadmapper.KeypadMapperApplication;
 import de.enaikoon.android.keypadmapper3.LocationNotAvailableException;
-import de.enaikoon.android.keypadmapper3.R;
+import hu.meskobalazs.android.keypadmapper.R;
 import de.enaikoon.android.keypadmapper3.domain.Address;
 import de.enaikoon.android.keypadmapper3.domain.Mapper;
 import de.enaikoon.android.keypadmapper3.domain.UndoAvailabilityListener;
 import de.enaikoon.android.keypadmapper3.geocode.ReverseGeocodeController;
 import de.enaikoon.android.keypadmapper3.view.HideCursorEditText;
 import de.enaikoon.android.keypadmapper3.view.HideCursorEditText.EditTextImeBackListener;
-import de.enaikoon.android.keypadmapper3.view.menu.KeypadMapperMenu;
 import de.enaikoon.android.library.resources.locale.Localizer;
 
 public class KeypadFragment extends Fragment implements OnClickListener, UndoAvailabilityListener {

@@ -2,7 +2,6 @@ package de.enaikoon.android.keypadmapper3.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.os.Build;
 import android.preference.Preference;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -11,12 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
-import de.enaikoon.android.keypadmapper3.KeypadMapperApplication;
-import de.enaikoon.android.keypadmapper3.R;
+import hu.meskobalazs.android.keypadmapper.KeypadMapperApplication;
+import hu.meskobalazs.android.keypadmapper.R;
 import de.enaikoon.android.keypadmapper3.settings.KeypadMapperSettings;
 
 // based on http://robobunny.com/wp/2011/08/13/android-seekbar-preference/

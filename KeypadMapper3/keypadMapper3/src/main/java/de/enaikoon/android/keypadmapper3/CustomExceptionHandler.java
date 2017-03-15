@@ -18,6 +18,7 @@ import android.preference.PreferenceManager;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
+import hu.meskobalazs.android.keypadmapper.R;
 
 public class CustomExceptionHandler implements UncaughtExceptionHandler {
 

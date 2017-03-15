@@ -15,7 +15,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.TextView;
-import de.enaikoon.android.keypadmapper3.KeypadMapperApplication;
+import hu.meskobalazs.android.keypadmapper.KeypadMapperApplication;
 import de.enaikoon.android.keypadmapper3.utils.ConnectivityUtils;
 import de.enaikoon.android.library.resources.locale.Localizer;
 

@@ -25,7 +25,7 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
-import de.enaikoon.android.keypadmapper3.KeypadMapperApplication;
+import hu.meskobalazs.android.keypadmapper.KeypadMapperApplication;
 import de.enaikoon.android.keypadmapper3.LocationNotAvailableException;
 import de.enaikoon.android.keypadmapper3.settings.KeypadMapperSettings;
 import de.enaikoon.android.keypadmapper3.utils.SerialExecutor;

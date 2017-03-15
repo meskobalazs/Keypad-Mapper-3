@@ -17,7 +17,7 @@ import java.util.TimeZone;
 
 import android.os.Environment;
 import android.util.Log;
-import de.enaikoon.android.keypadmapper3.KeypadMapperApplication;
+import hu.meskobalazs.android.keypadmapper.KeypadMapperApplication;
 import de.enaikoon.android.keypadmapper3.domain.Address;
 import de.enaikoon.android.keypadmapper3.domain.Trackpoint;
 import de.enaikoon.android.library.resources.locale.Localizer;

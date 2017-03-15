@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="de.enaikoon.android.keypadmapper3"
+    package="hu.meskobalazs.android.keypadmapper"
     android:installLocation="auto"
     android:versionCode="47"
-    android:versionName="3.1.00" >
+    android:versionName="3.2.00" >
     <uses-sdk
         android:minSdkVersion="7"
         android:targetSdkVersion="15" />
@@ -50,11 +50,11 @@
             android:theme="@style/SettingsTheme" >
         </activity>
         <activity
-            android:name="ExceptionActivity"
+            android:name="de.enaikoon.android.keypadmapper3.ExceptionActivity"
             android:configChanges="locale|keyboardHidden|orientation" >
         </activity>
         <activity
-            android:name="ShareFilesActivity"
+            android:name="de.enaikoon.android.keypadmapper3.ShareFilesActivity"
             android:configChanges="locale|keyboardHidden|orientation"
             android:label="@string/prefsShare"
             android:theme="@android:style/Theme.Dialog" >

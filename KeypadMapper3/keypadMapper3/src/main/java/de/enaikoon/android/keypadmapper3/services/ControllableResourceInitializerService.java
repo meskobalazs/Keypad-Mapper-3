@@ -9,7 +9,7 @@ package de.enaikoon.android.keypadmapper3.services;
 
 import android.content.Context;
 import android.content.Intent;
-import de.enaikoon.android.keypadmapper3.KeypadMapperApplication;
+import hu.meskobalazs.android.keypadmapper.KeypadMapperApplication;
 import de.enaikoon.android.keypadmapper3.utils.ConnectivityUtils;
 import de.enaikoon.android.library.resources.locale.ResourcesInitializerService;
 

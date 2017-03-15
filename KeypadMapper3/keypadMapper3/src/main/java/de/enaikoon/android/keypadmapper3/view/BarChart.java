@@ -25,7 +25,7 @@ import android.location.GpsStatus;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.View;
-import de.enaikoon.android.keypadmapper3.KeypadMapperApplication;
+import hu.meskobalazs.android.keypadmapper.KeypadMapperApplication;
 import de.enaikoon.android.library.resources.locale.Localizer;
 
 /**

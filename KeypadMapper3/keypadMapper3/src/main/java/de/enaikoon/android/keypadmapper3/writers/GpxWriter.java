@@ -5,7 +5,7 @@ import java.io.RandomAccessFile;
 import java.util.Calendar;
 import java.util.TimeZone;
 
-import de.enaikoon.android.keypadmapper3.KeypadMapperApplication;
+import hu.meskobalazs.android.keypadmapper.KeypadMapperApplication;
 import de.enaikoon.android.keypadmapper3.settings.KeypadMapperSettings;
 
 public class GpxWriter {

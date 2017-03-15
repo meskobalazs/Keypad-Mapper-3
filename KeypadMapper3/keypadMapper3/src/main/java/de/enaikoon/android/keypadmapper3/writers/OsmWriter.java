@@ -3,13 +3,12 @@ package de.enaikoon.android.keypadmapper3.writers;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.nio.ByteBuffer;
 import java.util.Calendar;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import android.util.Log;
-import de.enaikoon.android.keypadmapper3.KeypadMapperApplication;
+import hu.meskobalazs.android.keypadmapper.KeypadMapperApplication;
 import de.enaikoon.android.keypadmapper3.settings.KeypadMapperSettings;
 import de.enaikoon.android.keypadmapper3.utils.ByteSearch;
 

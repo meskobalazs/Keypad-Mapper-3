@@ -26,6 +26,8 @@ import de.enaikoon.android.keypadmapper3.settings.KeypadMapperSettings;
 import de.enaikoon.android.keypadmapper3.utils.UnitsConverter;
 import de.enaikoon.android.keypadmapper3.view.BarChart;
 import de.enaikoon.android.library.resources.locale.Localizer;
+import hu.meskobalazs.android.keypadmapper.KeypadMapperApplication;
+import hu.meskobalazs.android.keypadmapper.R;
 
 /**
  * 

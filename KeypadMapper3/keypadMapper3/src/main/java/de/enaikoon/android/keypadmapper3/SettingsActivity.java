@@ -32,7 +32,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
@@ -47,6 +46,8 @@ import de.enaikoon.android.keypadmapper3.utils.UnitsConverter;
 import de.enaikoon.android.keypadmapper3.view.menu.KeypadMapperMenu;
 import de.enaikoon.android.keypadmapper3.view.menu.MenuListener;
 import de.enaikoon.android.library.resources.locale.Localizer;
+import hu.meskobalazs.android.keypadmapper.KeypadMapperApplication;
+import hu.meskobalazs.android.keypadmapper.R;
 
 public class SettingsActivity extends Activity implements OnClickListener, OnDismissListener {
     private static final int SWIPE_MIN_DISTANCE = 120;
@@ -96,10 +97,6 @@ public class SettingsActivity extends Activity implements OnClickListener, OnDis
     private LinearLayout llGeneralLanguage;
     private TextView txtGeneralLanguageTitle;
     private TextView txtGeneralLanguageSummary;
-    
-    private LinearLayout llRate;
-    private TextView txtRateTitle;
-    private TextView txtRateSummary;
     
     private LinearLayout llShare;
     private TextView txtShareTitle;
@@ -165,11 +162,7 @@ public class SettingsActivity extends Activity implements OnClickListener, OnDis
     private TextView txtBugReportTitle;
     private TextView txtBugReportSummary;
     
-    private LinearLayout llAbout;
-    private TextView txtAboutTitle;
-    private TextView txtAboutSummary;
-    
-    private KeypadMapperMenu menu; 
+    private KeypadMapperMenu menu;
     private Mapper mapper;
     private Localizer localizer;
     private KeypadMapperSettings settings;
@@ -240,10 +233,7 @@ public class SettingsActivity extends Activity implements OnClickListener, OnDis
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if (gestureDetector.onTouchEvent(event)) {
-                    return true;
-                }
-                return false;
+                return gestureDetector.onTouchEvent(event);
             }
         });
 
@@ -254,13 +244,6 @@ public class SettingsActivity extends Activity implements OnClickListener, OnDis
         txtGeneralLanguageTitle.setText(localizer.getString("prefsLanguageTitle"));
         txtGeneralLanguageSummary = (TextView) llGeneralLanguage.findViewById(R.id.txtSummary);
         txtGeneralLanguageSummary.setText(localizer.getString("prefsLanguageSummary"));
-        
-        llRate = (LinearLayout) findViewById(R.id.setting_rate);
-        llRate.setOnClickListener(this);
-        txtRateTitle = (TextView) llRate.findViewById(R.id.txtTitle);
-        txtRateTitle.setText(localizer.getString("settings_rate_title"));
-        txtRateSummary = (TextView) llRate.findViewById(R.id.txtSummary);
-        txtRateSummary.setText(localizer.getString("settings_rate_summary"));
         
         llShare = (LinearLayout) findViewById(R.id.setting_share);
         llShare.setOnClickListener(this);
@@ -364,13 +347,6 @@ public class SettingsActivity extends Activity implements OnClickListener, OnDis
         txtBugReportTitle.setText(localizer.getString("options_bugreport"));
         txtBugReportSummary = (TextView) llBugReport.findViewById(R.id.txtSummary);
         txtBugReportSummary.setText(localizer.getString("options_bugreport_summary"));
-        
-        llAbout  = (LinearLayout) findViewById(R.id.setting_about);
-        llAbout.setOnClickListener(this);
-        txtAboutTitle = (TextView) llAbout.findViewById(R.id.txtTitle);
-        txtAboutTitle.setText(localizer.getString("prefsAbout"));
-        txtAboutSummary = (TextView) llAbout.findViewById(R.id.txtSummary);
-        txtAboutSummary.setText(localizer.getString("prefsAboutDetails"));
     }
 
     @Override
@@ -453,8 +429,6 @@ public class SettingsActivity extends Activity implements OnClickListener, OnDis
     public void onClick(View v) {
         if (v == llGeneralLanguage) {
             showSelectLanguageDialog();
-        } else if (v == llRate) {
-            rateApp();
         } else if (v == llShare) {
             shareFiles();
         } else if (v == llClearFolder) {
@@ -523,12 +497,12 @@ public class SettingsActivity extends Activity implements OnClickListener, OnDis
                 }
                 settings.setCurrentLanguageCode(refCodes.get(which).toString());
                 SettingsActivity.this.finish();
-                
+
                 Intent localIntent = new Intent(SettingsActivity.this, SettingsActivity.class);
                 SettingsActivity.this.startActivity(localIntent);
             }
         });
-        
+
         adb.setNegativeButton(localizer.getString("cancel"), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface localdialog, int which) {
@@ -537,7 +511,7 @@ public class SettingsActivity extends Activity implements OnClickListener, OnDis
         });
 
         activeDialog = DIALOG_LANGUAGE;
-        
+
         dialog = adb.create();
         dialog.setOnDismissListener(this);
         dialog.show();
@@ -553,7 +527,7 @@ public class SettingsActivity extends Activity implements OnClickListener, OnDis
             Log.e("KeypadMapper", "No activity to handle rate app on market intent.");
         }
     }
-    
+
     private void shareFiles() {
         if (settings.isRecording()) {
             KeypadMapperApplication.getInstance().stopGpsRecording();
@@ -837,9 +811,9 @@ public class SettingsActivity extends Activity implements OnClickListener, OnDis
         chkTurnOffUpdates.setChecked(settings.isTurnOffUpdates());
         
         LocationProvider provider = KeypadMapperApplication.getInstance().getLocationProvider();
-        if (settings.isTurnOffUpdates() == true && !settings.isRecording()) {
+        if (settings.isTurnOffUpdates() && !settings.isRecording()) {
             provider.stopRequestingUpdates();
-        } else if (settings.isTurnOffUpdates() == false) {
+        } else if (settings.isTurnOffUpdates()) {
             provider.startRequestingUpdates();
             provider.addLocationListener(menu);
             provider.addLocationListener(mapper);

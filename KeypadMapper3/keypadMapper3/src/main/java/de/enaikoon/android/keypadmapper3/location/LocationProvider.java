@@ -22,7 +22,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import de.enaikoon.android.inviu.opencellidlibrary.CellIDCollectionService;
-import de.enaikoon.android.keypadmapper3.KeypadMapperApplication;
+import hu.meskobalazs.android.keypadmapper.KeypadMapperApplication;
 import de.enaikoon.android.keypadmapper3.SatelliteInfoFragment;
 import de.enaikoon.android.keypadmapper3.utils.GPSDataValidator;
 import de.enaikoon.android.keypadmapper3.utils.NMEAHelper;

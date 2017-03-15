@@ -18,12 +18,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-import de.enaikoon.android.keypadmapper3.KeypadMapperApplication;
-import de.enaikoon.android.keypadmapper3.R;
+import hu.meskobalazs.android.keypadmapper.KeypadMapperApplication;
+import hu.meskobalazs.android.keypadmapper.R;
 import de.enaikoon.android.keypadmapper3.utils.WavUtil;
 import de.enaikoon.android.library.resources.locale.Localizer;
 

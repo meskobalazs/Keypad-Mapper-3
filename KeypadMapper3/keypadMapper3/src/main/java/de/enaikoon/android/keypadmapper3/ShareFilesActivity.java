@@ -8,7 +8,6 @@
 package de.enaikoon.android.keypadmapper3;
 
 import java.io.File;
-import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -44,6 +43,8 @@ import de.enaikoon.android.keypadmapper3.settings.KeypadMapperSettings;
 import de.enaikoon.android.keypadmapper3.writers.GpxWriter;
 import de.enaikoon.android.keypadmapper3.writers.OsmWriter;
 import de.enaikoon.android.library.resources.locale.Localizer;
+import hu.meskobalazs.android.keypadmapper.KeypadMapperApplication;
+import hu.meskobalazs.android.keypadmapper.R;
 
 /**
  * 

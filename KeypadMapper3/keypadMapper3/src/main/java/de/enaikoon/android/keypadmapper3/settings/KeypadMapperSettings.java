@@ -16,8 +16,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import de.enaikoon.android.keypadmapper3.KeypadMapperApplication;
-import de.enaikoon.android.keypadmapper3.R;
+import hu.meskobalazs.android.keypadmapper.KeypadMapperApplication;
+import hu.meskobalazs.android.keypadmapper.R;
 import de.enaikoon.android.keypadmapper3.utils.UnitsConverter;
 
 /**

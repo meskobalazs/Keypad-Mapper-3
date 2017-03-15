@@ -17,7 +17,7 @@ import android.location.Location;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.widget.Toast;
-import de.enaikoon.android.keypadmapper3.KeypadMapperApplication;
+import hu.meskobalazs.android.keypadmapper.KeypadMapperApplication;
 import de.enaikoon.android.keypadmapper3.domain.Mapper;
 import de.enaikoon.android.library.resources.locale.Localizer;
 

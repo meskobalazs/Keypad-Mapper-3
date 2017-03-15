@@ -1,4 +1,4 @@
-package de.enaikoon.android.keypadmapper3;
+package hu.meskobalazs.android.keypadmapper;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -32,6 +32,7 @@ import de.enaikoon.android.inviu.opencellidlibrary.CellIDCollectionService;
 import de.enaikoon.android.inviu.opencellidlibrary.CellIDCollectionService.LocalBinder;
 import de.enaikoon.android.inviu.opencellidlibrary.Configurator;
 import de.enaikoon.android.inviu.opencellidlibrary.UploadService;
+import de.enaikoon.android.keypadmapper3.CustomExceptionHandler;
 import de.enaikoon.android.keypadmapper3.domain.Mapper;
 import de.enaikoon.android.keypadmapper3.location.LocationProvider;
 import de.enaikoon.android.keypadmapper3.settings.KeypadMapperSettings;
@@ -156,16 +157,6 @@ public class KeypadMapperApplication extends Application {
             }
         });
         
-        // final LogConfigurator logConfigurator = new LogConfigurator();
-        //
-        // logConfigurator.setFileName(getKeypadMapperDirectory() +
-        // File.separator
-        // + "keypadmapper.log");
-        // logConfigurator.setRootLevel(Level.DEBUG);
-        // // Set log level of a specific logger
-        // logConfigurator.setLevel("org.apache", Level.ERROR);
-        // logConfigurator.configure();
-
         locationProvider = new LocationProvider(getApplicationContext());
         
         mapper = new Mapper(this);
