@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="hu.meskobalazs.android.keypadmapper"
     android:installLocation="auto"
-    android:versionCode="47"
-    android:versionName="3.2.00" >
+    android:versionCode="48"
+    android:versionName="3.2.01" >
     <uses-sdk
         android:minSdkVersion="7"
         android:targetSdkVersion="15" />
