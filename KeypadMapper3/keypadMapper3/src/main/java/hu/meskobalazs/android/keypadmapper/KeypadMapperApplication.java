@@ -32,7 +32,6 @@ import de.enaikoon.android.inviu.opencellidlibrary.CellIDCollectionService;
 import de.enaikoon.android.inviu.opencellidlibrary.CellIDCollectionService.LocalBinder;
 import de.enaikoon.android.inviu.opencellidlibrary.Configurator;
 import de.enaikoon.android.inviu.opencellidlibrary.UploadService;
-import de.enaikoon.android.keypadmapper3.CustomExceptionHandler;
 import de.enaikoon.android.keypadmapper3.domain.Mapper;
 import de.enaikoon.android.keypadmapper3.location.LocationProvider;
 import de.enaikoon.android.keypadmapper3.settings.KeypadMapperSettings;
@@ -134,13 +133,11 @@ public class KeypadMapperApplication extends Application {
         // TODO: set this to false on production build
         testVersion = false;
 
-        Thread.setDefaultUncaughtExceptionHandler(new CustomExceptionHandler(this));
-        
         onlyFilesFilter = new FileFilter() {
             @Override
             public boolean accept(File file) {
                 return !file.isDirectory()
-                        && (file.getName().endsWith(".gpx") || file.getName().endsWith(".osm") 
+                        && (file.getName().endsWith(".gpx") || file.getName().endsWith(".osm")
                                 || file.getName().endsWith(".jpg")
                                 || file.getName().endsWith(".wav"));
             }
@@ -148,14 +145,15 @@ public class KeypadMapperApplication extends Application {
         
         settings = new KeypadMapperSettings(getApplicationContext());
 
-        localizer = new Localizer(getApplicationContext(), "lang_support_codes");
-        localizer.setLocaleProvider(new LocaleProvider() {
+        LocaleProvider localeProvider = new LocaleProvider() {
 
             @Override
             public String getLocale() {
                 return settings.getCurrentLanguageCode();
             }
-        });
+
+        };
+        localizer = new Localizer(getApplicationContext(), "lang_support_codes", localeProvider);
         
         locationProvider = new LocationProvider(getApplicationContext());
         

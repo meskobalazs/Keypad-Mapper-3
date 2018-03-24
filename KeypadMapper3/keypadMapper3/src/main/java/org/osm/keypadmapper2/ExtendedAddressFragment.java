@@ -57,17 +57,18 @@ public class ExtendedAddressFragment extends Fragment implements OnFocusChangeLi
 
     private Address address;
 
-    private TextWatcher housenumberWatcher = new TextWatcher() {
+    private TextWatcher houseNumberWatcher = new TextWatcher() {
 
         @Override
         public void afterTextChanged(Editable s) {
-            if (address == null)
+            if (address == null) {
                 return;
-            textInputHousenumber.removeTextChangedListener(housenumberWatcher);
-            addressCallback.onHousenumberChanged(s.toString());
+            }
+            textInputHousenumber.removeTextChangedListener(houseNumberWatcher);
+            addressCallback.onHouseNumberChanged(s.toString());
             address.setNumber(s.toString());
             mapper.setCurrentAddress(address);
-            textInputHousenumber.addTextChangedListener(housenumberWatcher);
+            textInputHousenumber.addTextChangedListener(houseNumberWatcher);
         }
 
         @Override
@@ -188,7 +189,7 @@ public class ExtendedAddressFragment extends Fragment implements OnFocusChangeLi
     }
     
     private void removeTextWatchers() {
-        textInputHousenumber.removeTextChangedListener(housenumberWatcher);
+        textInputHousenumber.removeTextChangedListener(houseNumberWatcher);
         textInputHousename.removeTextChangedListener(textWatcher);
         textInputStreet.removeTextChangedListener(textWatcher);
         textInputPostcode.removeTextChangedListener(textWatcher);
@@ -197,7 +198,7 @@ public class ExtendedAddressFragment extends Fragment implements OnFocusChangeLi
     }
     
     private void addTextWatchers() {
-        textInputHousenumber.addTextChangedListener(housenumberWatcher);
+        textInputHousenumber.addTextChangedListener(houseNumberWatcher);
         textInputHousename.addTextChangedListener(textWatcher);
         textInputStreet.addTextChangedListener(textWatcher);
         textInputPostcode.addTextChangedListener(textWatcher);

@@ -3,23 +3,23 @@ package org.osm.keypadmapper2;
 
 public interface AddressInterface {
 
-    public void extendedAddressActive();
+    void extendedAddressActive();
 
-    public void extendedAddressInactive();
+    void extendedAddressInactive();
 
     /**
-     * Called when the user changes the housenumber.
+     * Called when the user changes the house number.
      * 
-     * @param newHousenumber
-     *            Currently entered housenumber.
+     * @param newHouseNumber
+     *            Currently entered housen umber.
      */
-    public void onHousenumberChanged(String newHousenumber);
+    void onHouseNumberChanged(String newHouseNumber);
     
     /**
      * Called when address has been updated and extended fragment has to refresh 
      * data.
      */
-    public void onAddressUpdated();
+    void onAddressUpdated();
 
     void showMessage(String messageKey);
 }

@@ -26,19 +26,15 @@ import de.enaikoon.android.keypadmapper3.utils.UnitsConverter;
 public class KeypadMapperSettings {
     public static final int MAX_VIBRATION_TIME = 500; // 500ms
     public static final int DEFAULT_VIBRATION_TIME = 120; // 120ms
-    public static final int VIBRATION_TIME_STEP = 1;
 
     public static final int KEYBOARD_MAX_VIBRATION_TIME = 500; // 500ms
     public static final int KEYBOARD_DEFAULT_VIBRATION_TIME = 50; // 50ms
-    public static final int KEYBOARD_VIBRATION_TIME_STEP = 1;
 
     public static final int MAX_USE_COMPASS_AT_SPEED_KMH = 20; // 20 km/h
     public static final int DEFAULT_USE_COMPASS_AT_SPEED_KMH = 5;
-    public static final int USE_COMPASS_AT_SPEED_STEP_KMH = 1;
 
     public static final int MAX_USE_COMPASS_AT_SPEED_MPH = 10; // mph
     public static final int DEFAULT_USE_COMPASS_AT_SPEED_MPH = 5;
-    public static final int USE_COMPASS_AT_SPEED_STEP_MPH = 1;
 
     public static final float M_PER_SEC_HAS_KM_PER_HOUR = 3.6f;
     public static final float M_PER_SEC_HAS_MILES_PER_HOUR = 2.23694f;
@@ -71,12 +67,6 @@ public class KeypadMapperSettings {
             editor.putString("general_language", locales.contains(lang) ? lang : "en");
             editor.commit();
         }
-        if (preferences.getString("list_errorreporting", null) == null) {
-            Editor editor = preferences.edit();
-            editor.putString("list_errorreporting",
-                    context.getString(R.string.options_bugreport_default));
-            editor.commit();
-        }
 
         try {
             // backward compatibility
@@ -107,7 +97,7 @@ public class KeypadMapperSettings {
         if (getMeasurement().equals(UNIT_FEET)) {
             defaultValue = (int) Math.rint(UnitsConverter.convertMetersToFeets(DEFAULT_HOUSE_NUMBER_DISTANCE_METERS));
         }
-        return preferences.getInt("housenumberDistance", defaultValue);
+        return preferences.getInt("houseNumberDistance", defaultValue);
     }
 
     public void setHouseNumberDistance(int val) {
@@ -124,7 +114,7 @@ public class KeypadMapperSettings {
         }
 
         Editor editor = preferences.edit();
-        editor.putInt("housenumberDistance", val); //
+        editor.putInt("houseNumberDistance", val); //
         editor.commit();
     }
 
@@ -343,13 +333,4 @@ public class KeypadMapperSettings {
         editor.commit();
     }
 
-    public String getErrorReporting() {
-        return preferences.getString("list_errorreporting", KeypadMapperApplication.getInstance().getString(R.string.options_bugreport_default));
-    }
-
-    public void setErrorReporting(String s) {
-        Editor editor = preferences.edit();
-        editor.putString("list_errorreporting", s);
-        editor.commit();
-    }
 }

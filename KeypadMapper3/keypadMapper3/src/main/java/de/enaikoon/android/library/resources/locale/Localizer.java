@@ -14,7 +14,6 @@ import java.io.InputStream;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -26,7 +25,6 @@ import android.text.Html;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.WindowManager;
-import android.widget.Chronometer;
 import de.enaikoon.android.library.resources.utils.NinePatchChunk;
 
 /**
@@ -36,7 +34,7 @@ import de.enaikoon.android.library.resources.utils.NinePatchChunk;
  */
 public class Localizer {
 
-    public static interface LocaleProvider {
+    public interface LocaleProvider {
         String getLocale();
     }
 
@@ -62,9 +60,10 @@ public class Localizer {
         densityDpi = getDensityDpi();
     }
 
-    public Localizer(Context context, String languagesCodeResourceName) {
+    public Localizer(Context context, String languagesCodeResourceName, LocaleProvider localeProvider) {
         this(context);
-        setLanguagesCodeResourceName(languagesCodeResourceName);
+        this.localeProvider = localeProvider;
+        fillLanguagesCodeResourceName(languagesCodeResourceName);
     }
 
     /**
@@ -123,25 +122,13 @@ public class Localizer {
     }
 
     /**
-     * Returns localized image. This method use locale that is provided by
-     * locale provider or system settings
-     * 
-     * 
-     * @param name
-     * @return
-     */
-    public Drawable getDrawable(String name) {
-        return getDrawable(name, getLocale());
-    }
-
-    /**
      * Returns localized image
      * 
-     * @param name
-     * @param locale
-     * @return
+     * @param name image name
+     * @return Drawable image
      */
-    public Drawable getDrawable(String name, String locale) {
+    public Drawable getDrawable(String name) {
+        String locale = getLocale();
         File imageFile =
                 new File(context.getFilesDir() + "/" + locale + "_" + densityDpi + "_" + name);
         if (!imageFile.exists()) {
@@ -171,82 +158,13 @@ public class Localizer {
     }
 
     /**
-     * Returns localized image. This method use locale that is provided by
-     * locale provider or system settings
-     * 
-     * @deprecated use getImage(String name) instead
-     * 
-     * @param name
-     * @return
-     */
-    @Deprecated
-    public Drawable getLocalizedImage(String name) {
-        return getDrawable(name, getLocale());
-    }
-
-    /**
-     * Returns localized image
-     * 
-     * @deprecated use getImage(String name, String locale) instead
-     * 
-     * @param name
-     * @param locale
-     * @return
-     */
-    @Deprecated
-    public Drawable getLocalizedImage(String name, String locale) {
-        return getDrawable(name, locale);
-    }
-
-    /**
-     * Returns localized text resource. This method use locale that is provided
-     * by locale provider or system settings
-     * 
-     * @deprecated use getString(String name) instead
-     * 
-     * @param name
-     *            resource name
-     * @return localized text
-     */
-    @Deprecated
-    public String getLocalizedString(String name) {
-        return getString(name, getLocale());
-    }
-
-    /**
      * Returns localized text resource
-     * 
-     * @deprecated use getString(String name, String locale) instead
-     * 
-     * @param name
-     * @param locale
-     * @return
-     */
-    @Deprecated
-    public String getLocalizedString(String name, String locale) {
-        return getString(name, locale);
-    }
-
-    /**
-     * Returns localized text resource. This method use locale that is provided
-     * by locale provider or system settings
-     * 
-     * @param name
-     *            resource name
-     * @return localized text
+     *
+     * @param name string key name
+     * @return localized message
      */
     public String getString(String name) {
-        return getString(name, getLocale());
-    }
-
-    /**
-     * Returns localized text resource
-     * 
-     * @param name
-     * @param locale
-     * @return
-     */
-    public String getString(String name, String locale) {
+        String locale = getLocale();
         String text = storage.getString(locale + "_" + name, null);
         if (text != null && !text.equals("")) {
         	if (text.contains("&lt;") || text.contains("&gt;"))
@@ -267,104 +185,24 @@ public class Localizer {
     }
 
     /**
-     * Returns the array of String. String should be delimited by "\n".
+     * Returns the array of String. String should be delimited by ",".
      * 
-     * @param name
+     * @param name string key name
      * @return array of the strings
      */
     public String[] getStringArray(String name) {
-        return getStringArray(name, getLocale());
-    }
-
-    /**
-     * Returns the array of String. String should be delimited by "\n".
-     * 
-     * @param name
-     * @param locale
-     * @return array of the strings
-     */
-    public String[] getStringArray(String name, String locale) {
+        String locale = getLocale();
         String text = getString(name, locale);
         if (text != null) {
-            return text.split("\n");
+            return text.split(",");
         } else {
             return new String[0];
         }
     }
 
-    /**
-     * This method should be used when application using resources autoupdate
-     * functionality. Before switch locale it should be checked for
-     * availability.
-     * 
-     * @param localeCode
-     * @return if resources for specified locale was loaded return true
-     *         otherwise false
-     */
-    public boolean isLocaleLoaded(String localeCode) {
-        int id =
-                context.getResources().getIdentifier(languagesCodeResourceName, "string",
-                        context.getPackageName());
-        String[] buildInLanguages = context.getString(id).split("\n");
-        for (String buildLang : buildInLanguages) {
-            if (localeCode.equalsIgnoreCase(buildLang)) {
-                return true;
-            }
-        }
-        if (getLastUpdate(localeCode) != null) {
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Save the date when specified locale was updated last time
-     * 
-     * @param locale
-     * @param dateInString
-     *            date format yyyy-MM-dd HH:mm
-     */
-    public void saveLastUpdate(String locale, String dateInString) {
-        Editor editor = storage.edit();
-        editor.putString("date_" + locale, dateInString);
-        editor.commit();
-    }
-    
-    /**
-     * Save the date when specified locale was updated last time
-     * 
-     * @param locale
-     * @param dateInString
-     *            date format yyyy-MM-dd HH:mm
-     */
-    public void saveLastUpdate(Editor editor, String locale, String dateInString) {
-        editor.putString("date_" + locale, dateInString);
-    }    
-
-    /**
-     * Set locale provider for indicating what text resources should be used
-     * 
-     * @param localeProvider
-     */
-    public void setLocaleProvider(LocaleProvider localeProvider) {
-        this.localeProvider = localeProvider;
-    }
-
-    /**
-     * Remove text resource from the storage
-     * 
-     * @param key
-     */
-    protected void deleteString(String key) {
-        Editor editor = storage.edit();
-        editor.remove(key);
-        editor.commit();
-    }
-
-    protected String getDensityDpi() {
+    private String getDensityDpi() {
         DisplayMetrics metrics = new DisplayMetrics();
-        WindowManager windowManager =
-                (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         windowManager.getDefaultDisplay().getMetrics(metrics);
         switch (metrics.densityDpi) {
         case DisplayMetrics.DENSITY_LOW:
@@ -375,55 +213,12 @@ public class Localizer {
             return "hdpi";
         case DisplayMetrics.DENSITY_XHIGH:
             return "xhdpi";
-            // case DisplayMetrics.DENSITY_DEFAULT:
-            // return "";
         default:
             return "";
-
         }
     }
 
-    /**
-     * returns date when <code>locale</code> recieve update last time.
-     * 
-     * @param locale
-     * @return date in format yyyy-MM-dd HH:mm
-     */
-    protected String getLastUpdate(String locale) {
-        return storage.getString("date_" + locale, null);
-    }
-
-    /**
-     * Save the text resource for specified locale and value
-     * 
-     * @param locale
-     *            resource locale
-     * @param name
-     *            resource name
-     * @param value
-     *            resource value
-     */
-    protected void putStringResource(String locale, String name, String value) {
-        Editor editor = storage.edit();
-        editor.putString(locale + "_" + name, value);
-        editor.commit();
-    }
-    
-    /**
-     * Save the text resource for specified locale and value
-     * 
-     * @param locale
-     *            resource locale
-     * @param name
-     *            resource name
-     * @param value
-     *            resource value
-     */
-    protected void putStringResource(Editor editor, String locale, String name, String value) {
-        editor.putString(locale + "_" + name, value);
-    }    
-
-    protected void setLanguagesCodeResourceName(String languagesCodeResourceName) {
+    private void fillLanguagesCodeResourceName(String languagesCodeResourceName) {
         if (context.getResources().getIdentifier(languagesCodeResourceName, "string",
                 context.getPackageName()) == 0) {
             throw new IllegalArgumentException("Specified resource is not found");
@@ -439,14 +234,6 @@ public class Localizer {
         }
     }
     
-    /**
-     * Return a localized formatted resource, substituting the format arguments
-     * 
-     * @param name
-     * @param locale - if null, getLocale() will be used
-     * @param string arguments
-     * @return
-     */
     public String getString(String name, String locale, Object... formatArgs) {
     	if (locale==null)
     	{

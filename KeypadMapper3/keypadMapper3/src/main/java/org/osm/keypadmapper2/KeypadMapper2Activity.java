@@ -56,7 +56,6 @@ import de.enaikoon.android.keypadmapper3.domain.Mapper;
 import de.enaikoon.android.keypadmapper3.domain.NotificationListener;
 import de.enaikoon.android.keypadmapper3.location.LocationProvider;
 import de.enaikoon.android.keypadmapper3.photo.CameraHelper;
-import de.enaikoon.android.keypadmapper3.services.ControllableResourceInitializerService;
 import de.enaikoon.android.keypadmapper3.settings.KeypadMapperSettings;
 import de.enaikoon.android.keypadmapper3.view.menu.KeypadMapperMenu;
 import de.enaikoon.android.keypadmapper3.view.menu.MenuListener;
@@ -366,20 +365,7 @@ public class KeypadMapper2Activity extends FragmentActivity implements AddressIn
         }
 
         btnTestVersion = (Button) keypadView.findViewById(R.id.btnTestVersion);
-        /*
-        btnTestVersion.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent();
-                i.setClass(KeypadMapper2Activity.this, SettingsActivity.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(i);
-                
-                // show debug screen with all registered addresses and locations
-                //showTestScreenDialog();
-            }
-        });*/
-        
+
         if (satteliteInfoVisible) {
             showSatteliteInfo();
         } else {
@@ -396,7 +382,7 @@ public class KeypadMapper2Activity extends FragmentActivity implements AddressIn
     }
 
     @Override
-    public void onHousenumberChanged(String newHousenumber) {
+    public void onHouseNumberChanged(String newHousenumber) {
         extendedAddressFragment.updateHouseNumber(newHousenumber);
         keypadFragment.updateHousenumber(newHousenumber);
     }
@@ -420,15 +406,15 @@ public class KeypadMapper2Activity extends FragmentActivity implements AddressIn
         /* TODO: leave this in case of more testing needed for location filtering
         if (loc == null || !KeypadMapperApplication.getInstance().isTestVersion())
             return;
-        
-        
+
+
         // DEBUG DATA ONLY
         double DISTANCE = KeypadMapperApplication.getInstance().getSettings().getDistance();
-        
+
         LocObj locObjLeft = getCurrentAddress(0, DISTANCE, loc);
         LocObj locObjForward = getCurrentAddress(DISTANCE, 0, loc);
         LocObj locObjRight = getCurrentAddress(0, -DISTANCE, loc);
-        
+
         boolean passed = true;
 
         int statusCount = locationProvider.getLastFixCount();
@@ -437,10 +423,10 @@ public class KeypadMapper2Activity extends FragmentActivity implements AddressIn
         } else {
             locationProvider.setLastValidLocation(loc);
         }
-        
-        
-        
-        
+
+
+
+
         final StringBuffer tempBuffer = new StringBuffer();
         tempBuffer.append("----------------------------------\n");
         tempBuffer.append("Unmodified GPS coords - lat: " + loc.getLatitude() + " lon: " + loc.getLongitude() + "\n");
@@ -458,7 +444,7 @@ public class KeypadMapper2Activity extends FragmentActivity implements AddressIn
        /* if (allData.length() > SB_ALL_LIMIT) {
             allData = new StringBuffer();
         }
-        
+
         if (duplicates.length() > SB_ALL_LIMIT) {
             duplicates = new StringBuffer();
         }
@@ -475,7 +461,7 @@ public class KeypadMapper2Activity extends FragmentActivity implements AddressIn
             duplicates.append(tempBuffer.toString());
         }
 
-        
+
         if (allLocations.size() > 25) {
             allLocations.remove(0);
         }
@@ -491,26 +477,43 @@ public class KeypadMapper2Activity extends FragmentActivity implements AddressIn
      */
     @Override
     public void onMenuOptionClicked(OptionType type) {
-        if (type == OptionType.CAMERA) {
-            makePhotoWithLocation();
-        } else if (type == OptionType.GPS_INFO) {
-            showSatteliteInfo();
-        } else if (type == OptionType.ADDRESS_EDITOR) {
-            state = State.extended;
-            showKeypad();
-        } else if (type == OptionType.KEYPAD) {
-            state = State.keypad;
-            showKeypad();
-        } else if (type == OptionType.UNDO) {
-            mapper.undo();
-        } else if (type == OptionType.SETTINGS) {
-            showSettings();
-        } else if (type == OptionType.FREEZE_GPS) {
-            mapper.freezeUnfreezeLocation(this);
-        } else if (type == OptionType.KEYPAD) {
-            state = State.keypad;
-            showKeypad();
-        } 
+        switch (type) {
+            case CAMERA: {
+                makePhotoWithLocation();
+                break;
+            }
+            case GPS_INFO: {
+                showSatteliteInfo();
+                break;
+            }
+            case ADDRESS_EDITOR: {
+                state = State.extended;
+                showKeypad();
+                break;
+            }
+            case KEYPAD: {
+                state = State.keypad;
+                showKeypad();
+                break;
+            }
+            case UNDO: {
+                mapper.undo();
+                break;
+            }
+            case SETTINGS: {
+                showSettings();
+                break;
+            }
+            case FREEZE_GPS: {
+                mapper.freezeUnfreezeLocation(this);
+                break;
+            }
+            case SHARE:
+            case START_STOP_GPS:
+            case AUDIO: {
+                break;
+            }
+        }
     }
 
     @Override
@@ -535,8 +538,8 @@ public class KeypadMapper2Activity extends FragmentActivity implements AddressIn
         
         Log.d(TAG, "resume");
 
-        ControllableResourceInitializerService.startResourceLoading(getApplicationContext(),
-                "lang_support_codes", "lang_support_names", "lang_support_urls");
+        //ControllableResourceInitializerService.startResourceLoading(getApplicationContext(),
+        //        "lang_support_codes", "lang_support_names");
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         mapper.addNotificationListener(this);
         

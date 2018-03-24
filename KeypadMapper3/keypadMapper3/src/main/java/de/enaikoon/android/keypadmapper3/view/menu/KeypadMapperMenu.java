@@ -264,7 +264,7 @@ public class KeypadMapperMenu implements OnClickListener, FreezedLocationListene
         homeBtn.setKeepScreenOn(settings.isKeepScreenOnEnabled());
         initFreezeGpsButton();
         initUndoButton();
-        updateHousenumberCount();
+        updateHouseNumberCount();
         if (mapper.getCurrentLocation() == null) {
             determineToUseCompass(0.0f);
             updateGpsIcon();
@@ -321,7 +321,7 @@ public class KeypadMapperMenu implements OnClickListener, FreezedLocationListene
     @Override
     public void undoStateChanged(boolean undoAvailable) {
         initUndoButton();
-        updateHousenumberCount();
+        updateHouseNumberCount();
     }
 
     protected boolean isExtendedEditorEnabled() {
@@ -376,7 +376,7 @@ public class KeypadMapperMenu implements OnClickListener, FreezedLocationListene
         undoBtn.invalidate();
     }
 
-    private void updateHousenumberCount() {
+    private void updateHouseNumberCount() {
         housenumberCount.setText("" + mapper.getHouseNumberCount());
     }
     

@@ -205,7 +205,7 @@ public class KeypadFragment extends Fragment implements OnClickListener, UndoAva
             Toast.makeText(getActivity(), localizer.getString("locationNotAvailable"),
                     Toast.LENGTH_SHORT).show();
         }
-        addressCallback.onHousenumberChanged(address.getNumber());
+        addressCallback.onHouseNumberChanged(address.getNumber());
         updateLastHouseNumbers();
     }
 

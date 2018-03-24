@@ -50,10 +50,6 @@
             android:theme="@style/SettingsTheme" >
         </activity>
         <activity
-            android:name="de.enaikoon.android.keypadmapper3.ExceptionActivity"
-            android:configChanges="locale|keyboardHidden|orientation" >
-        </activity>
-        <activity
             android:name="de.enaikoon.android.keypadmapper3.ShareFilesActivity"
             android:configChanges="locale|keyboardHidden|orientation"
             android:label="@string/prefsShare"

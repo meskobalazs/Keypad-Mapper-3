@@ -157,11 +157,7 @@ public class SettingsActivity extends Activity implements OnClickListener, OnDis
     private TextView txtOptimizeLayoutTitle;
     private TextView txtOptimizeLayoutSummary;
     private CheckBox chkOptimizeLayout;
-    
-    private LinearLayout llBugReport;
-    private TextView txtBugReportTitle;
-    private TextView txtBugReportSummary;
-    
+
     private KeypadMapperMenu menu;
     private Mapper mapper;
     private Localizer localizer;
@@ -174,9 +170,7 @@ public class SettingsActivity extends Activity implements OnClickListener, OnDis
     private final static int DIALOG_DELETE_FILES = 1;
     private final static int DIALOG_MEASUREMENT = 2;
     private final static int DIALOG_WAV_PATH = 3;
-    private final static int DIALOG_BUG_REPORT = 4;
-    private final static int DIALOG_ABOUT = 5;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         KeypadMapperApplication.getInstance().setScreenToActivate(null);
@@ -340,13 +334,6 @@ public class SettingsActivity extends Activity implements OnClickListener, OnDis
         txtOptimizeLayoutSummary = (TextView) llOptimizeLayout.findViewById(R.id.txtSummary);
         txtOptimizeLayoutSummary.setText("");
         chkOptimizeLayout = (CheckBox) llOptimizeLayout.findViewById(R.id.btn_checkbox);
-        
-        llBugReport  = (LinearLayout) findViewById(R.id.setting_bug_report);
-        llBugReport.setOnClickListener(this);
-        txtBugReportTitle = (TextView) llBugReport.findViewById(R.id.txtTitle);
-        txtBugReportTitle.setText(localizer.getString("options_bugreport"));
-        txtBugReportSummary = (TextView) llBugReport.findViewById(R.id.txtSummary);
-        txtBugReportSummary.setText(localizer.getString("options_bugreport_summary"));
     }
 
     @Override
@@ -406,9 +393,6 @@ public class SettingsActivity extends Activity implements OnClickListener, OnDis
             case DIALOG_WAV_PATH:
                 showWavPathDialog();
                 break;
-            case DIALOG_BUG_REPORT:
-                showBugReportDialog();
-                break;
             default:
                 break;
             }
@@ -453,8 +437,6 @@ public class SettingsActivity extends Activity implements OnClickListener, OnDis
             showWavPathDialog();
         } else if (v == llOptimizeLayout) {
             handleOptimizeLayout();
-        } else if (v == llBugReport) {
-            showBugReportDialog();
         }
     }
     
@@ -465,23 +447,16 @@ public class SettingsActivity extends Activity implements OnClickListener, OnDis
         String[] codes = localizer.getStringArray("lang_support_codes");
         String[] names = localizer.getStringArray("lang_support_names");
 
-        boolean[] loaded = new boolean[codes.length];
-        for (int i = 0; i < loaded.length; i++) {
-            loaded[i] = localizer.isLocaleLoaded(codes[i]);
-        }
-
         List<String> loadedCodes = new ArrayList<String>();
         List<String> loadedNames = new ArrayList<String>();
         int tempSelected = 0;
         for (int i = 0; i < codes.length && i < names.length; i++) {
-            if (loaded[i]) {
-                loadedCodes.add(codes[i]);
-                loadedNames.add(names[i]);
-                if (codes[i].equalsIgnoreCase(settings.getCurrentLanguageCode())) {
-                    Log.d("Keypad", "Selected language code: " + settings.getCurrentLanguageCode());
-                    tempSelected = i;
-                }
-            } 
+            loadedCodes.add(codes[i]);
+            loadedNames.add(names[i]);
+            if (codes[i].equalsIgnoreCase(settings.getCurrentLanguageCode())) {
+                Log.i("Keypad", "Selected language code: " + settings.getCurrentLanguageCode());
+                tempSelected = i;
+            }
         }
         
         final CharSequence [] entries = loadedNames.toArray(new CharSequence[]{});
@@ -515,17 +490,6 @@ public class SettingsActivity extends Activity implements OnClickListener, OnDis
         dialog = adb.create();
         dialog.setOnDismissListener(this);
         dialog.show();
-    }
-
-    private void rateApp() {
-        settings.setLaunchCount(100);
-        try {
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse("market://details?id=de.enaikoon.android.keypadmapper3"));
-            startActivity(intent);
-        } catch (Exception e) {
-            Log.e("KeypadMapper", "No activity to handle rate app on market intent.");
-        }
     }
 
     private void shareFiles() {
@@ -863,47 +827,6 @@ public class SettingsActivity extends Activity implements OnClickListener, OnDis
         
     }
 
-    private void showBugReportDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(localizer.getString("options_bugreport"));
-        String[] displayStrings = new String[] { localizer.getString("options_bugreport_values_1"),
-                                               localizer.getString("options_bugreport_values_2"),
-                                               localizer.getString("options_bugreport_values_3") };
-        final String [] constantStrings = getResources().getStringArray(R.array.options_bugreport_keys);
-        int checkedItem = -1;
-        for (checkedItem = 0; checkedItem < constantStrings.length; checkedItem++) {
-            if (settings.getErrorReporting().equals(constantStrings[checkedItem])) {
-                break;
-            }
-        }
-        
-        builder.setNegativeButton(localizer.getString("cancel"), null);
-        builder.setSingleChoiceItems(displayStrings, checkedItem, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                settings.setErrorReporting(constantStrings[which]);
-                dialog.dismiss();
-            }
-        });
-        
-        activeDialog = DIALOG_BUG_REPORT;
-        dialog = builder.create();
-        dialog.show();
-    }
-    
-    private String getVersionName() {
-        try {
-            // get the app version number
-            PackageInfo pInfo =
-                    getPackageManager().getPackageInfo(getPackageName(),
-                            PackageManager.GET_META_DATA);
-
-            return pInfo.versionName;
-        } catch (Exception e) {
-            return "";
-        }
-    }
-    
     @Override
     public void onDismiss(DialogInterface d) {
         activeDialog = -1;
