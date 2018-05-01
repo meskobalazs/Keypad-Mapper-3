@@ -129,10 +129,10 @@ If the compass feature is active due to low speed, then the GPS precision icon i
 &lt;br&gt;
 All .wav files must be located in that path so that JOSM / Potlach can correctly play them when the .gpx file is loaded and the audio marker clicked.&lt;br&gt;
 &lt;br&gt;
-If no path has been configured, then c:\ will be used on Windows machines and / will be used on Linux machines as default.&lt;br&gt;
+If no path has been configured, then c:\\ will be used on Windows machines and / will be used on Linux machines as default.&lt;br&gt;
 &lt;br&gt;
 Examples for paths:&lt;br&gt;
-&amp;nbsp;&amp;nbsp;Windows: &lt;b&gt;c:\myrecordedfiles\&lt;/b&gt;&lt;br/&gt;
+&amp;nbsp;&amp;nbsp;Windows: &lt;b&gt;c:\\myrecordedfiles\\&lt;/b&gt;&lt;br/&gt;
 &amp;nbsp;&amp;nbsp;Linux: &lt;b&gt;/usr/local/tmp/&lt;/b&gt;&lt;br/&gt;</string>
     <string name="popupAudioText">Audio note</string>
     <string name="prefsMeasurementEntryMeters">Metric</string>
