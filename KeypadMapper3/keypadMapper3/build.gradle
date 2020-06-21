@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 15
-    buildToolsVersion '26.0.2'
+    buildToolsVersion '29.0.3'
 
     defaultConfig {
         applicationId "de.enaikoon.android.keypadmapper3"
@@ -30,11 +30,11 @@ android {
 }
 
 dependencies {
-    compile 'com.actionbarsherlock:actionbarsherlock:4.4.0@aar'
-    compile 'com.android.support:support-v13:18.0.0'
-    compile ('org.apache.httpcomponents:httpmime:4.0.3') {
+    implementation 'com.actionbarsherlock:actionbarsherlock:4.4.0@aar'
+    implementation 'com.android.support:support-v13:18.0.0'
+    implementation ('org.apache.httpcomponents:httpmime:4.0.3') {
         exclude group: 'commons-logging', module: 'commons-logging'
         exclude group: 'org.apache.httpcomponents', module: 'httpclient'
     }
-    compile 'org.apache.sanselan:sanselan:0.97-incubator'
+    implementation 'org.apache.sanselan:sanselan:0.97-incubator'
 }
