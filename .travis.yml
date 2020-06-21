@@ -41,4 +41,4 @@ deploy:
   file: KeypadMapper3/keypadMapper3/build/outputs/apk/keypadMapper3-debug.apk
   on:
     tags: true
-    repo: ckesc/Keypad-Mapper-3
+    repo: meskobalazs/Keypad-Mapper-3
