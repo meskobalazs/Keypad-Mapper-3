@@ -1,0 +1,44 @@
+language: android
+
+before_install:
+  - yes | sdkmanager "platforms;android-15"
+  - mkdir "$ANDROID_HOME/licenses" || true
+  - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
+  - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
+
+android:
+  components:
+    - tools
+    - platform-tools
+    - build-tools-25.0.2
+    - android-25
+    - extra-android-m2repository
+  licenses:
+    - android-sdk-preview-license-.+
+    - android-sdk-license-.+
+    - google-gdk-license-.+
+    - intel-android-extra-license.+
+    - ".+"
+jdk:
+  - oraclejdk8
+
+install: true
+script: cd KeypadMapper3 && ./gradlew assembleDebug --continue && cd ..
+
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+    - "$HOME/.gradle/caches/"
+    - "$HOME/.gradle/wrapper/"
+
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: BMpcRV6+X/6+UdMNxSWyrWMvCAbcOJato8NzoTa7vTVAuZ10UbgwcKBnwKYNUdA/MCojt0cbLNC4mngawU5/gHsFgFYQl7CRl7hjd46IWhyMwy01nsbZlkXcERvQaKv6EFxp6w6wY/izu3b4he72L9oCQ9/5IcwT0sEUGxz10Zg5NOLZXrnzx30hFeDtao+LNfwG7XDVji8g9zvCzFbqKB3bG2CaIhzdxUGi4Sqd2WywJYotIbahWMmuo4bwFfIBZDy7IDHQ6wt6m+P98R37+BAoNIT+XD35RROJF/Rpe0vX2YOQ93BmqJpxadcwPHAAgrComAB9zKHsVTzeoNtPFcYKbyWcjErr4cT0HwKWuPFC5akNjSvd5ePHXz+jsKDVWGXNd7n0cQA1Vcu6pgaxnbIMyXTMDCt2idIb3vLM+CQgqjtADZUsElpfUrydBEIFACZk2yEOcAxvvKvHyFIoCV2ZZkrhydrQAculBEQFgTCYjV+IFcXMpfwP0sm87nQ5WYgQfb/2mgbMST67L/D3FG/WiBFCHSeutx5Rr0+BNHrJ5dgbVXZR47QcrIKvDtQSkpTvw535w1YTvtJBgxtWe2jG/C8KT536Y8+GMNLoyclgfmMNhE0xJjqy821iUWu7CdsSrEI06BhGfVF7VIA5a+NC2/EQp5jq37ZZlORb2Zc=
+  file: KeypadMapper3/keypadMapper3/build/outputs/apk/keypadMapper3-debug.apk
+  on:
+    tags: true
+    repo: ckesc/Keypad-Mapper-3
